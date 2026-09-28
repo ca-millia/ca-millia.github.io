@@ -1,1 +1,56 @@
-{}
+{
+  "01_post-1": {
+    "category": "随笔",
+    "tags": [
+      "Astro",
+      "写作"
+    ]
+  },
+  "02_eng-learn": {
+    "category": "笔记",
+    "tags": [
+      "英语"
+    ]
+  },
+  "03_computerscience": {
+    "category": "笔记",
+    "tags": [
+      "Python",
+      "电脑"
+    ]
+  },
+  "04_202601 遍历山东·一": {
+    "category": "旅记",
+    "tags": [
+      "山东",
+      "旅行"
+    ]
+  },
+  "05_Python学习笔记": {
+    "category": "笔记",
+    "tags": [
+      "Python"
+    ]
+  },
+  "06_火箭发动机研究": {
+    "category": "笔记",
+    "tags": [
+      "航天",
+      "机械"
+    ]
+  },
+  "07_Obsidian使用分享": {
+    "category": "笔记",
+    "tags": [
+      "Obsidian",
+      "AI"
+    ]
+  },
+  "08_我心目中理想的AI": {
+    "category": "随笔",
+    "tags": [
+      "AI",
+      "Agent"
+    ]
+  }
+}
