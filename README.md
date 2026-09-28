@@ -51,3 +51,16 @@ npm run preview
 
 `npm run verify:content` 会把已登记的迁移修改逆向还原，再与旧文逐字比较。修改参考表在 `docs/content-changes.md`；机器可读记录在同目录 JSON 中。
 原始图片存于 public，JPEG 仅在构建产物中缩小。`npm run check` 执行类型检查。
+
+## 发布与回退
+
+GitHub Pages 正式地址：https://ca-millia.github.io/
+
+仓库 Settings → Pages → Source 选择 **GitHub Actions**。
+推送 main 后，`.github/workflows/deploy.yml` 自动安装依赖、类型检查、构建、内容核验并发布。Pull Request 只验证，不部署。
+日常写作推荐新建分支，验证完成后合并 main。不要直接提交 dist 或 node_modules。
+
+回退：用 `git log --oneline` 找到有问题的提交，通过 `git revert <提交号>` 创建反向提交并推送 main，Actions 会重新部署。若仅需恢复某次部署，可在 Actions 中重新运行对应的成功发布工作流。旧 Netlify 站点保持不变。
+
+迁移修改参考表：[docs/content-changes.md](docs/content-changes.md)
+验证记录：[docs/validation.md](docs/validation.md)
