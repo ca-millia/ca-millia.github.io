@@ -1,0 +1,13 @@
+---
+import { type Post, postUrl, categoryOf, tagsOf, formatDate } from '../lib/posts';
+interface Props { posts: Post[]; }
+const { posts } = Astro.props;
+---
+<ul class="post-list">
+  {posts.map(post => <li>
+    <div class="post-meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>{categoryOf(post) && <a href={`/categories/${encodeURIComponent(categoryOf(post)!)}/`}>{categoryOf(post)}</a>}</div>
+    <div class="post-list-content"><h2><a href={postUrl(post)}>{post.data.title}</a></h2><div class="tags">{tagsOf(post).map(tag => <a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>{tag}</a>)}</div></div>
+    <a class="post-arrow" href={postUrl(post)} aria-label={`阅读：${post.data.title}`}>↗</a>
+  </li>)}
+</ul>
+{posts.length === 0 && <p class="empty-state">这里暂时还没有文章，慢慢写，慢慢积累。</p>}

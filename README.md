@@ -1,59 +1,27 @@
-<header>
+# 山石的小站
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+知识分享 / 个人记录 / 文章创作。Astro 静态个人写作站。
 
-# GitHub Pages
+## 开发
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+需要 Node.js 22.12+，推荐 Node.js 24。
 
-</header>
+```sh
+npm ci
+npm run dev
+npm run check
+npm run build
+npm run preview
+```
 
-<!--
-  <<< Author notes: Step 2 >>>
-  Start this step by acknowledging the previous step.
-  Define terms and link to docs.github.com.
-  Historic note: previous version checked for empty pull request, changed to the correct theme `minima`.
--->
+## 写作
 
-## Step 2: Configure your site
+复制 `templates/post.md` 到 `src/content/posts/`，填写标题、日期和唯一的 slug。发布后保持文件名（文章 ID）和 slug 稳定。
+图片放在 `public/img/`，正文使用 `/img/文件名`。站点资料在 `src/config.ts`。
 
-_You turned on GitHub Pages! :tada:_
+分类和展示标签在 `src/data/organization.json`，键为不含扩展名的文章文件名，值为 `{ "category": "笔记", "tags": ["Astro"] }`。
+未单独配置时保留文章原 tags，不推断分类。
 
-We'll work in a branch, `my-pages`, that I created for you to get this site looking great. :sparkle:
+人工合集在 `src/data/collections.json`：每项包含 slug、title、description、posts（有序文章 ID 数组）。合集不会由标签自动生成。
 
-Jekyll uses a file titled `_config.yml` to store settings for your site, your theme, and reusable content like your site title and GitHub handle. You can check out the `_config.yml` file on the **Code** tab of your repository.
-
-We need to use a blog-ready theme. For this activity, we will use a theme named "minima".
-
-### :keyboard: Activity: Configure your site
-
-1. Browse to the `_config.yml` file in the `my-pages` branch.
-1. In the upper right corner, open the file editor.
-1. Add a `theme:` set to **minima** so it shows in the `_config.yml` file as below:
-   ```yml
-   theme: minima
-   ```
-1. (optional) You can modify the other configuration variables such as `title:`, `author:`, and `description:` to further customize your site.
-1. Commit your changes.
-1. (optional) Create a pull request to view all the changes you'll make throughout this course. Click the **Pull Requests** tab, click **New pull request**, set `base: main` and `compare:my-pages`.
-1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+旧文章基线与迁移记录见 `docs/`。旧站正文只允许语法及迁移修复，不改写文字。

@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import { site } from '../config';
+interface Props { title?: string; description?: string; wide?: boolean; }
+const { title, description = site.description, wide = false } = Astro.props;
+const navigation = [['/', '首页'], ['/blog/', '文章'], ['/collections/', '合集'], ['/about/', '关于']];
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title ? `${title} · ${site.title}` : site.title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="site-mark" aria-hidden="true">山</span>{site.title}<span class="wordmark-note">文字与生活</span></a>
+      <nav aria-label="主导航">{navigation.map(([href, label]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
+    </header>
+    <main id="main" class:list={['page-main', { wide }]}><slot /></main>
+    <footer class="site-footer"><span>© {new Date().getFullYear()} {site.author} <span class="footer-note">· 记录，也是在场。</span></span><div><a href={site.github}>GitHub ↗</a><a href="/rss.xml">RSS ↗</a></div></footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allPosts, categories, categoryOf } from '../../lib/posts';
+const posts = await allPosts();
+---
+<BaseLayout title="分类"><header class="page-heading"><p class="eyebrow">WAYS OF WRITING</p><h1>分类</h1><p>用不同的方式，记录生活。</p></header><div class="category-list">{categories.map(category => <a href={`/categories/${encodeURIComponent(category)}/`}><span>{category}</span><small>{posts.filter(p => categoryOf(p) === category).length} 篇</small></a>)}</div><a class="back-link" href="/blog/">← 全部文章</a></BaseLayout>

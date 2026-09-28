@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { allPosts, categories, categoryOf } from '../../lib/posts';
+export async function getStaticPaths() { const posts = await allPosts(); return categories.map(category => ({ params: { category }, props: { posts: posts.filter(p => categoryOf(p) === category) } })); }
+const { posts } = Astro.props;
+---
+<BaseLayout title={Astro.params.category}><header class="page-heading"><a class="back-link" href="/categories/">← 分类</a><h1>{Astro.params.category}</h1></header><PostList posts={posts} /></BaseLayout>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allPosts, tagsOf } from '../../lib/posts';
+const tags = [...new Set((await allPosts()).flatMap(tagsOf))].sort((a,b) => a.localeCompare(b, 'zh-CN'));
+---
+<BaseLayout title="主题"><header class="page-heading"><p class="eyebrow">THREADS OF THOUGHT</p><h1>主题</h1><p>循着一个词，遇见另一篇文章。</p></header><div class="tags tag-cloud">{tags.map(tag => <a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>{tag}</a>)}</div><a class="back-link" href="/blog/">← 全部文章</a></BaseLayout>

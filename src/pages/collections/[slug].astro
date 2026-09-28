@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { allPosts, editorialCollections } from '../../lib/posts';
+export async function getStaticPaths() { const posts = await allPosts(); return editorialCollections.map(collection => ({ params: { slug: collection.slug }, props: { collection, posts: collection.posts.map(id => posts.find(p => p.id === id)!) } })); }
+const { collection, posts } = Astro.props;
+---
+<BaseLayout title={collection.title} description={collection.description}><header class="page-heading"><a class="back-link" href="/collections/">← 合集</a><h1>{collection.title}</h1><p>{collection.description}</p><small>{posts.length} 篇文章 · 按选编顺序</small></header><PostList posts={posts} /></BaseLayout>

@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { allPosts, tagsOf } from '../../lib/posts';
+export async function getStaticPaths() { const posts = await allPosts(); return [...new Set(posts.flatMap(tagsOf))].map(tag => ({ params: { tag }, props: { posts: posts.filter(p => tagsOf(p).includes(tag)) } })); }
+const { posts } = Astro.props;
+---
+<BaseLayout title={Astro.params.tag}><header class="page-heading"><a class="back-link" href="/tags/">← 主题</a><h1>{Astro.params.tag}</h1></header><PostList posts={posts} /></BaseLayout>

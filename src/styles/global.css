@@ -1,0 +1,16 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #302e2b; background: #faf8f4; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; }
+.site-header, .page-main, .site-footer { width: min(100% - 3rem, 960px); margin: auto; }
+.site-header, .site-footer, nav, .tags, .post-meta { display: flex; gap: 1rem; }
+.site-header, .site-footer { justify-content: space-between; padding: 2rem 0; }
+.page-main { min-height: 65vh; padding: 2rem 0; }
+.post-list { list-style: none; padding: 0; }
+.post-list li { margin: 2rem 0; }
+.post-meta, .tag { font-size: .8rem; }
+.prose { line-height: 1.9; overflow-wrap: anywhere; }
+.prose img { max-width: 100%; height: auto; }
+pre { overflow: auto; }
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: 1rem; }
