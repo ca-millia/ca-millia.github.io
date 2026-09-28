@@ -8,21 +8,26 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/optimize-images.mjs",
+    "build": "astro build && node scripts/optimize-images.mjs && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
-    "verify:content": "node scripts/verify-content.mjs"
+    "verify:content": "node scripts/verify-content.mjs",
+    "verify:site": "node scripts/verify-site.mjs",
+    "test": "npm run verify:content && npm run verify:site"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "6.0.6",
     "katex": "^0.16.22",
+    "pagefind": "^1.5.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "linkedom": "^0.18.13",
     "typescript": "^5.9.3"
   }
 }

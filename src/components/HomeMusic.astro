@@ -1,0 +1,12 @@
+---
+import { homeMusic } from '../config';
+---
+{homeMusic && <section class="home-music" aria-label="首页背景音乐"><p><span aria-hidden="true">♫</span> 此刻的音乐 · {homeMusic.title}</p><audio id="home-music" controls loop preload="none" aria-label={homeMusic.title}><source src={homeMusic.src} /></audio><a href={homeMusic.src}>打开音频 ↗</a></section>}
+<script>
+  const audio = document.querySelector<HTMLAudioElement>('#home-music');
+  if (audio) {
+    audio.volume = 0.35;
+    window.addEventListener('pagehide', () => { audio.pause(); });
+    window.addEventListener('pageshow', () => { audio.pause(); });
+  }
+</script>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostList from '../components/PostList.astro';
+import HomeMusic from '../components/HomeMusic.astro';
 import { allPosts } from '../lib/posts';
 const posts = await allPosts();
 ---
@@ -10,6 +11,7 @@ const posts = await allPosts();
     <h1>在这里，<br />留下生活的<span class="accent">回声。</span></h1>
     <p class="intro-quote">我们这一生，唯有文字能担此重任，<br class="desktop-break" />宣告生命曾经在场。</p>
     <div class="author-line"><img src="/img/portrait.jpg" alt="camillia 的头像" width="52" height="52" /><div><p>¡Hola，这里是 camillia！</p><span>知识分享 / 个人记录 / 文章创作</span></div></div>
+    <HomeMusic />
   </section>
   <section aria-labelledby="recent-heading"><div class="section-heading"><div><p class="eyebrow">RECENT WRITING</p><h2 id="recent-heading">最近写下的</h2></div><a href="/blog/">全部文章 <span aria-hidden="true">↗</span></a></div><PostList posts={posts.slice(0, 5)} /></section>
   <aside class="home-note"><span aria-hidden="true">✳</span><p>此地诞生于 2025-12-05。<br />感兴趣的话，也可以看看我的公众号：<strong>山石石山不知山</strong></p><a href="/about/">关于我 ↗</a></aside>

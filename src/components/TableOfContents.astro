@@ -11,4 +11,24 @@ const headings = Astro.props.headings.filter(heading => heading.depth === 2 || h
     details.open = !mobile.matches;
     mobile.addEventListener('change', event => { details.open = !event.matches; });
   }
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.toc a')];
+  const sections = links.map(link => document.getElementById(decodeURIComponent(link.hash.slice(1))));
+  let scheduled = false;
+  function highlight() {
+    let current = 0;
+    sections.forEach((section, index) => {
+      if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.25) current = index;
+    });
+    links.forEach((link, index) => {
+      if (index === current) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    scheduled = false;
+  }
+  if (links.length) {
+    highlight();
+    window.addEventListener('scroll', () => {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(highlight); }
+    }, { passive: true });
+  }
 </script>

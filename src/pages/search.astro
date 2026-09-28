@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="搜索">
+  <header class="page-heading"><p class="eyebrow">FIND A THOUGHT</p><h1>找一段文字</h1><p>输入一个词，寻找文章里的回声。</p></header>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <div id="search"></div>
+  <p id="search-status" class="empty-state" role="status">搜索正在加载…</p>
+  <noscript><p>搜索需要 JavaScript。也可以按<a href="/categories/">分类</a>或<a href="/tags/">主题</a>浏览文章。</p></noscript>
+  <script is:inline>
+    const searchScript = document.createElement('script');
+    searchScript.src = '/pagefind/pagefind-ui.js';
+    searchScript.onload = () => {
+      new PagefindUI({ element: '#search', showSubResults: true, showImages: false, translations: { placeholder: '搜索文章…', zero_results: '没有找到「[SEARCH_TERM]」，试试另一个词。' } });
+      document.getElementById('search-status').hidden = true;
+    };
+    searchScript.onerror = () => {
+      document.getElementById('search-status').textContent = '搜索暂时无法加载。请稍后重试，或按分类与主题浏览文章。';
+    };
+    document.head.appendChild(searchScript);
+  </script>
+</BaseLayout>

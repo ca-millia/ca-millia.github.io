@@ -1,0 +1,13 @@
+---
+import { comments } from '../config';
+---
+<section class="comments" aria-label="评论" data-pagefind-ignore>
+  <h2>留几句话</h2>
+  {comments.enabled && <script is:inline src="https://giscus.app/client.js"
+    data-repo={comments.repo} data-repo-id={comments.repoId}
+    data-category={comments.category} data-category-id={comments.categoryId}
+    data-mapping="pathname" data-strict="1" data-reactions-enabled="1"
+    data-emit-metadata="0" data-input-position="top" data-theme="light"
+    data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>}
+  <p class="comment-fallback"><a href={`https://github.com/${comments.repo}/discussions`}>在 GitHub Discussions 交流 ↗</a></p>
+</section>
