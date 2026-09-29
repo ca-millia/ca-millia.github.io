@@ -41,6 +41,27 @@ h1 { font-weight: 500; letter-spacing: .025em; }
   align-items: center;
   gap: 2.5rem;
 }
+@media (max-width: 700px) {
+  .intro-profile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .intro-avatar {
+    width: 112px;
+    height: 112px;
+  }
+
+  .intro-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+}
 .intro-avatar {
   width: 144px;
   height: 144px;
