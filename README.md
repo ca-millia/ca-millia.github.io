@@ -24,7 +24,7 @@ npm run preview
 
 人工合集在 `src/data/collections.json`：每项包含 slug、title、description、posts（有序文章 ID 数组）。合集不会由标签自动生成。
 
-旧文章基线与迁移记录见 `docs/`。旧站正文只允许语法及迁移修复，不改写文字。
+旧文章基线与迁移记录见 `docs/`。重构时旧站正文只允许语法及迁移修复，不改写文字。
 
 ## 音频
 
@@ -57,7 +57,7 @@ npm run preview
 GitHub Pages 正式地址：https://ca-millia.github.io/
 
 仓库 Settings → Pages → Source 选择 **GitHub Actions**。
-推送 main 后，`.github/workflows/deploy.yml` 自动安装依赖、类型检查、构建、内容核验并发布。Pull Request 只验证，不部署。
+推送 main 后，`.github/workflows/deploy.yml` 自动安装依赖、类型检查、构建并发布。Pull Request 只验证，不部署。
 日常写作推荐新建分支，验证完成后合并 main。不要直接提交 dist 或 node_modules。
 
 回退：用 `git log --oneline` 找到有问题的提交，通过 `git revert <提交号>` 创建反向提交并推送 main，Actions 会重新部署。若仅需恢复某次部署，可在 Actions 中重新运行对应的成功发布工作流。旧 Netlify 站点保持不变。

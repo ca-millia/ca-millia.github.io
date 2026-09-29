@@ -34,8 +34,6 @@ assert.deepEqual(errors, [], 'Internal links, anchors and media must resolve');
 for (const entry of baseline) {
   const id = entry.file.replace(/\.md$/, '');
   const document = load(`posts/${id}/index.html`);
-  const title = entry.original.match(/^title: ['"](.*)['"]$/m)[1];
-  assert.equal(document.querySelector('h1').textContent, title);
   const headings = document.querySelectorAll('.prose h2, .prose h3');
   assert.equal(document.querySelectorAll('.toc a').length, headings.length, `${id}: TOC count`);
   assert.ok(document.querySelector('[data-pagefind-body]'));
@@ -58,4 +56,4 @@ for (const item of rss.querySelectorAll('item')) assert.ok(item.querySelector('l
 assert.ok(fs.existsSync('dist/sitemap-index.xml'));
 assert.ok(fs.existsSync('dist/pagefind/pagefind.js'));
 assert.ok(fs.existsSync('dist/404.html'));
-console.log(`Verified ${files.length} pages: links, media, anchors, titles, taxonomy, TOC, math, RSS, search artifacts and legacy routes.`);
+console.log(`Verified ${files.length} pages: links, media, anchors, headings, taxonomy, TOC, math, RSS, search artifacts and legacy routes.`);
