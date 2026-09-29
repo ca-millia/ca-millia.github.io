@@ -7,7 +7,10 @@ export const site = {
 };
 
 // 填写你自己的音频地址后，首页才会显示播放器。
-export const homeMusic: { title: string; src: string } | null = null;
+export const homeMusic: { title: string; src: string } | null = {
+  title: '灵光 - 张雨生',
+  src: '/audio/灵光 - 张雨生.mp3'
+};
 
 export const comments = {
   enabled: true,

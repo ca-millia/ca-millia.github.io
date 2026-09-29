@@ -1,12 +1,109 @@
 ---
 import { homeMusic } from '../config';
 ---
-{homeMusic && <section class="home-music" aria-label="首页背景音乐"><p><span aria-hidden="true">♫</span> 此刻的音乐 · {homeMusic.title}</p><audio id="home-music" controls loop preload="none" aria-label={homeMusic.title}><source src={homeMusic.src} /></audio><a href={homeMusic.src}>打开音频 ↗</a></section>}
+
+{homeMusic && (
+  <div class="home-music">
+    <span class="music-note" aria-hidden="true">♫</span>
+
+    <span class="music-title">{homeMusic.title}</span>
+
+    <button
+      id="music-toggle"
+      class="music-toggle"
+      type="button"
+      aria-label={`播放 ${homeMusic.title}`}
+    >
+      ▷
+    </button>
+
+    <audio
+      id="home-music"
+      loop
+      preload="metadata"
+      aria-label={homeMusic.title}
+    >
+      <source src={homeMusic.src} />
+    </audio>
+  </div>
+)}
+
 <script>
   const audio = document.querySelector<HTMLAudioElement>('#home-music');
-  if (audio) {
+  const button = document.querySelector<HTMLButtonElement>('#music-toggle');
+
+  if (audio && button) {
     audio.volume = 0.35;
-    window.addEventListener('pagehide', () => { audio.pause(); });
-    window.addEventListener('pageshow', () => { audio.pause(); });
+
+    const updateButton = () => {
+      button.textContent = audio.paused ? '▷' : 'Ⅱ';
+      button.classList.toggle('is-playing', !audio.paused);
+
+      button.setAttribute(
+        'aria-label',
+        audio.paused ? '播放音乐' : '暂停音乐'
+      );
+    };
+
+    button.addEventListener('click', async () => {
+      if (audio.paused) {
+        await audio.play();
+      } else {
+        audio.pause();
+      }
+
+      updateButton();
+    });
+
+    window.addEventListener('pagehide', () => {
+      audio.pause();
+      updateButton();
+    });
+
+    window.addEventListener('pageshow', () => {
+      audio.pause();
+      updateButton();
+    });
   }
 </script>
+
+<style>
+  .home-music {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .music-note {
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .music-title {
+    letter-spacing: 0.02em;
+  }
+
+  .music-toggle {
+    appearance: none;
+    border: 0;
+    padding: 0.1rem 0.25rem;
+    background: none;
+
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .music-toggle:hover,
+  .music-toggle:focus-visible,
+  .music-toggle.is-playing {
+    color: var(--accent);
+  }
+</style>
