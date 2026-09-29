@@ -4,4 +4,4 @@ import PostList from '../components/PostList.astro';
 import { allPosts } from '../lib/posts';
 const posts = await allPosts();
 ---
-<BaseLayout title="文章"><header class="page-heading"><p class="eyebrow">THE NOTEBOOK</p><h1>文章</h1><p>一些所学，一些经历，一些不想遗忘的念头。</p></header><nav class="browse-links" aria-label="浏览文章"><span>按时间</span><a href="/categories/">按分类</a><a href="/tags/">按主题</a></nav><PostList posts={posts} /></BaseLayout>
+<BaseLayout title="文章"><header class="page-heading"><p class="eyebrow">THE NOTEBOOK</p><h1>文章</h1><p> 状况与变数终会过去 唯有作品会留下来</p></header><nav class="browse-links" aria-label="浏览文章"><span>按时间</span><a href="/categories/">按分类</a><a href="/tags/">按主题</a></nav><PostList posts={posts} /></BaseLayout>

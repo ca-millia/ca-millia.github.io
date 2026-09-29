@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "关于";
-
-const hobbis = ["阅读","散步","看日落","看展看剧","最爱嫖姚和宝哥"];
 ---
 <BaseLayout title={pageTitle}><header class="page-heading"><p class="eyebrow">A LITTLE ABOUT ME</p><h1>关于我</h1></header><div class="prose">
 	<h2>Intro</h2>
@@ -10,18 +8,10 @@ const hobbis = ["阅读","散步","看日落","看展看剧","最爱嫖姚和宝
 	<p>在真空中飞翔的哲学家。</p>
 	<h2>Goals</h2>
 	<ul>
-		<li>学习德语</li>
 		<li>拎着吉他去政大</li>
-		<li>给Elon Musk干活</li>
-		<li>学习一点区块链及金融知识</li>
-		<li>时代留忆：我们这一代（参考肖全作品集）</li>
+		<li>在茫茫昏黄的时刻散步</li>
 		<li>2027 献给旅行者一号的故事</li>
+		<li>攻克巴别塔，认识更多的人</li>
+		<li>时代留忆：我们这一代（参考肖全作品集）</li>
 	</ul>
-	<h2>Achives</h2>
-	<ul>
-		<li><a href="https://camilliablog.netlify.app/">搭建博客</a></li>
-		<li><a href="https://liaoxuefeng.com/books/python/introduction/index.html">学习Python</a></li> 
-	</ul>
-	<h2>Hobbis</h2>
-	<ul>{hobbis.map((hobby) => <li class="hobby">{hobby}</li>)}</ul>
 </div></BaseLayout>
